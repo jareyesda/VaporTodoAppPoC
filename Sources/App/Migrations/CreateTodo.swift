@@ -4,7 +4,8 @@ struct CreateTodo: AsyncMigration {
     func prepare(on database: Database) async throws {
         try await database.schema("todos")
             .id()
-            .field("title", .string, .required)
+            .field(Todo.FieldKeys.title, .string, .required)
+            .field(Todo.FieldKeys.completed, .bool, .required)
             .create()
     }
 
